@@ -7,7 +7,7 @@ var account ={};           $( "[ID^='Account']" ).each(function(key,value){ debu
                 type: "POST",
                 dataType: "json", headers: { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json; charset=UTF-8' }, data: '{"jsondata": account}',
                 success: function (result) {
-                    debugger;
+                   
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
                     console.log(xhr);
