@@ -1,0 +1,38 @@
+<html>
+
+<META HTTP-EQUIV="Content-type" CONTENT="text/html; charset=UTF-8">
+
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script > 
+
+<script>
+function submitForm(){
+var data = {};
+  var account={};      
+  var contact ={};
+  var opportunity ={};
+  $( "[ID^='Account']" ).each(function(key,value){   account[$(value).attr('id')] =$(value).val();});
+ $( "[ID^='Contact']" ).each(function(key,value){   contact[$(value).attr('id')] =$(value).val();})   
+ $( "[ID^='Opportunity']" ).each(function(key,value){   opportunity[$(value).attr('id')] =$(value).val();})    
+  data["account"] = account;
+  data["contact"] = contact;
+  data["opportunity"] = opportunity;
+  $.ajax({
+                url: 'https://webapitest-developer-edition.eu6.force.com/services/apexrest/WebForms',
+                type: "POST",  contentType: 'application/json',
+                dataType: "json", headers: { 'Access-Control-Allow-Origin': '*' }, data:   JSON.stringify(data),
+                success: function (result) {
+                  console.log(result);
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    console.log(xhr);
+                }
+            });
+}
+</script>
+</head>
+<body>
+<form action="https://webapitest-developer-edition.eu6.force.com/services/apexrest/WebForms" method="POST"><input type=hidden name="oid" value="00D58000000Xy7xEAC"><input type=hidden name="retURL" value=""><label for="Account-accountnumber"> Account Number </label><input  id="Account-accountnumber" maxlength="40" name="Account-accountnumber" size="20" type="text" /><br><label for="Account-accountsource"> Account Source </label><input  id="Account-accountsource" maxlength="40" name="Account-accountsource" size="20" type="PICKLIST" /><br><label for="Account-active__c"> Active </label><input  id="Account-active__c" maxlength="40" name="Account-active__c" size="20" type="PICKLIST" /><br><label for="Account-activefieldtest__c"> ActiveFieldTest </label><input  id="Account-activefieldtest__c" maxlength="40" name="Account-activefieldtest__c" size="20" type="checkbox" /><br><label for="Account-annualrevenue"> Annual Revenue </label><input  id="Account-annualrevenue" maxlength="40" name="Account-annualrevenue" size="20" type="CURRENCY" /><br><label for="Account-billingaddress"> Billing Address </label><input  id="Account-billingaddress" maxlength="40" name="Account-billingaddress" size="20" type="ADDRESS" /><br><label for="Account-billingcity"> Billing City </label><input  id="Account-billingcity" maxlength="40" name="Account-billingcity" size="20" type="text" /><br><label for="Account-billingcountry"> Billing Country </label><input  id="Account-billingcountry" maxlength="40" name="Account-billingcountry" size="20" type="text" /><br><label for="Account-billinglatitude"> Billing Latitude </label><input  id="Account-billinglatitude" maxlength="40" name="Account-billinglatitude" size="20" type="DOUBLE" /><br><label for="Account-billinglongitude"> Billing Longitude </label><input  id="Account-billinglongitude" maxlength="40" name="Account-billinglongitude" size="20" type="DOUBLE" /><br><label for="Account-billingpostalcode"> Billing Zip/Postal Code </label><input  id="Account-billingpostalcode" maxlength="40" name="Account-billingpostalcode" size="20" type="text" /><br><label for="Account-billingstate"> Billing State/Province </label><input  id="Account-billingstate" maxlength="40" name="Account-billingstate" size="20" type="text" /><br><label for="Account-billingstreet"> Billing Street </label><input  id="Account-billingstreet" maxlength="40" name="Account-billingstreet" size="20" type="TEXTAREA" /><br><button type="button" onclick="submitForm();">submit</button></form>
+
+</body>
+</html>
